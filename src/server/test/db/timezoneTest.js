@@ -10,9 +10,9 @@
     mocha.it('timezones contained in the array', async () => {
          conn = testDB.getConnection();
          
-         const expectedreading1 = new Timezone("GB", "GMT" ,timestamp1);
-         const expectedreading2 = new Timezone("posix/Africa/Bangui", "WAT" ,timestamp2); 
-         const expectedreading3 = new Timezone("posix/Africa/Harare", "CAT" ,timestamp3 );
+         const expectedreading1 = new Timezone("GB", "GMT" ,'00:00:00');
+         const expectedreading2 = new Timezone("posix/Africa/Bangui", "WAT" ,'01:00:00'); 
+         const expectedreading3 = new Timezone("posix/Africa/Harare", "CAT" ,'02:00:00' );
         
          const timezoneReadings = await Timezone.getAllTimezones(conn);
 
