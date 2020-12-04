@@ -4,21 +4,23 @@
 
  const { mocha, expect, testDB } = require('../common');
  const Timezone = require('../../models/Timezone');
- 
- 
+ var obj1 = {
+    name:  "GB", 
+    abbrev: "GMT",
+    offset: "00:00:00" 
+ }
+var obj2 = {
+    name: "Atlantic/South_Georgia",
+    abbrev: "-02",
+    offset: "-02:00:00"
+}
+
+ var timezoneExpectedReading = [{ obj1}, {obj2}];
+
  mocha.describe('Timezone', () => {
     mocha.it('timezones contained in the array', async () => {
          conn = testDB.getConnection();
-         
-         const expectedreading1 = new Timezone("GB", "GMT" ,'00:00:00');
-         const expectedreading2 = new Timezone("posix/Africa/Bangui", "WAT" ,'01:00:00'); 
-         const expectedreading3 = new Timezone("posix/Africa/Harare", "CAT" ,'02:00:00' );
-        
-         const timezoneReadings = await Timezone.getAllTimezones(conn);
-
-         expect( (timezoneReadings).includes(expectedreading1) );
-         expect( (timezoneReadings).includes(expectedreading2) );
-         expect( (timezoneReadings).includes(expectedreading3) );
+         var timezoneReadings =  await [Timezone.getAllTimezones(conn)];
+         expect( timezoneReadings.includes(timezoneReadings) );
      });
-   
  }); 
